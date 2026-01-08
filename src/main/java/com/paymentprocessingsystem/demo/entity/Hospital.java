@@ -1,13 +1,15 @@
 package com.paymentprocessingsystem.demo.entity;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+import java.time.LocalDateTime;
 
-import java.util.Date;
 
-@Data
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "hospital")
 public class Hospital {
 
@@ -21,6 +23,11 @@ public class Hospital {
     @Column(length = 15)
     private String contactNumber;
 
-    @Temporal(TemporalType.DATE)
-    private Date createAt;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
 }

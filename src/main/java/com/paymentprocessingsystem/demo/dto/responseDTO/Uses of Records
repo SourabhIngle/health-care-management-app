@@ -1,0 +1,7 @@
+You should use a Record whenever you need a class that just "holds" data to pass it around. In your project, these are the best places:
+
+DTOs: When sending data from your Controller to the Frontend (e.g., PatientDTO).
+
+Database Results: When you query only specific columns (e.g., PatientNameAndId).
+
+API Responses: When returning a success/error message.

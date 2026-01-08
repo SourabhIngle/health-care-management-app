@@ -1,0 +1,34 @@
+# Use root/example as user/password credentials
+
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306" # Maps host port 3306 to container port 3306
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 30s
+
+  app:
+    build: .
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+          # We use 'mysqldb' (the service name) instead of localhost
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/test?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+    depends_on:
+      db:
+        condition: service_healthy
