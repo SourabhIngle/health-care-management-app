@@ -1,6 +1,7 @@
 package com.paymentprocessingsystem.demo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Past;
 import lombok.Data;
 
 import java.util.Date;
@@ -27,6 +28,7 @@ public class Patient {
     @Column(length = 10)
     private String gender;
 
+    @Past(message = "Date of birth must be in the past.")
     @Temporal(TemporalType.DATE)
     private Date dateOfBirth;
 

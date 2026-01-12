@@ -6,14 +6,13 @@ import com.paymentprocessingsystem.demo.entity.Hospital;
 import com.paymentprocessingsystem.demo.repository.HospitalRepository;
 import com.paymentprocessingsystem.demo.requestmapper.HospitalMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class HealthCareService {
+public class HospitalService {
 
     private final HospitalRepository hospitalRepository;
 

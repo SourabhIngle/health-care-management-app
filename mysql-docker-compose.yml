@@ -26,7 +26,7 @@ services:
       - "8080:8080"
     environment:
           # We use 'mysqldb' (the service name) instead of localhost
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/test?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/mydatabase?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=root
     depends_on:

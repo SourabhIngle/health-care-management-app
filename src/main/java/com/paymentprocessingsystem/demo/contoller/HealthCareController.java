@@ -2,8 +2,7 @@ package com.paymentprocessingsystem.demo.contoller;
 
 import com.paymentprocessingsystem.demo.dto.requestDTO.CreateHospitalRequest;
 import com.paymentprocessingsystem.demo.dto.responseDTO.HospitalDTO;
-import com.paymentprocessingsystem.demo.entity.Hospital;
-import com.paymentprocessingsystem.demo.service.HealthCareService;
+import com.paymentprocessingsystem.demo.service.HospitalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HealthCareController {
 
         @Autowired
-        private HealthCareService healthCareService;
+        private HospitalService hospitalService;
 
         @PostMapping
         public ResponseEntity<?> createHospital(@RequestBody CreateHospitalRequest hospitalRequest) {
             try {
-                HospitalDTO saved = healthCareService.createHospital(hospitalRequest);
+                HospitalDTO saved = hospitalService.createHospital(hospitalRequest);
                 return ResponseEntity.status(HttpStatus.CREATED).body(saved);
             } catch (Exception e) {
                 return ResponseEntity.badRequest().body(e.getMessage());
